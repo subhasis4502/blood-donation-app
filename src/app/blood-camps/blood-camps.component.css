@@ -1,0 +1,29 @@
+.panel {
+    margin: auto;
+    border: 3px solid black;
+}
+
+button {
+    background-color: #bf2229;
+    color: white;
+}
+
+.panel>.panel-heading {
+    padding: 10px;
+    background-image: none;
+    background-color: #bf2229;
+    color: white;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+th {
+    color: black;
+    background-color: #a40606;
+    background-image: linear-gradient(315deg, #a40606 0%, #d98324 74%);
+}

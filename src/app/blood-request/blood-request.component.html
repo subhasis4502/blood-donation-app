@@ -1,0 +1,123 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<main class="content">
+    <div class="container-fluid p-0" style="margin-left: 25%;
+    margin-right:25%;">
+        <h1 class="h3 mb-3" style="color: red;">Blood Request Form</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);width: 60%;">
+                    <div class="card-header">
+                        <h5 class="card-title" style="font-size: large; ">Request Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="registerForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="name">Name</label>
+                                    <input formControlName="name" type="text" class="form-control" id="name" name="name" placeholder="Name" required/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="email">Email</label>
+                                    <input formControlName="email" type="email" class="form-control" id="email" name="email" placeholder="Email" required/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input formControlName="phoneNumber" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="gender">Gender</label>
+                                    <input formControlName="gender" type="gender" class="form-control" id="gender" name="gender" placeholder="Gender" required/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="age">Age</label>
+                                    <input formControlName="age" type="text" class="form-control" id="age" name="age" placeholder="Age" required/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="address">Address</label>
+                                    <input formControlName="address" type="address" class="form-control" id="address" name="address" placeholder="Address" required/>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="state">State</label>
+                                    <select formControlName="state" type="state" class="form-control" id="state" name="state" placeholder="select" (change)="changeState($any($event.target).value)" required>
+                                        <option *ngFor ="let count of state_arr">{{count}} </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="city">City</label>
+                                    <select formControlName="city" type="text" class="form-control" id="city" name="city" placeholder="select" (change)="assignCity($any($event.target).value)" required>
+                                        <option *ngFor ="let city of cities">{{city}} </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="priority">Priority</label>
+                                    <select formControlName="priority" type="text" class="form-control" id="priority" name="priority" placeholder="Priority" required>
+                                        <option *ngFor ="let level of priority_arr">{{level}} </option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="bloodGroup">Reason For The Request</label>
+                                    <textarea formControlName="bloodGroup" type="text" class="form-control" id="reason" name="Reason" placeholder="Reason" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="file">Choose Prescription</label><br/>
+                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                            </div>
+                            <div >
+                                <label class="custom-control custom-checkbox m-0">
+                                    <input type="checkbox" class="custom-control-input" required />
+                                    <p class="custom-control-label">I agree to the Terms and Conditions and Privacy Policy</p>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary" (click)="register()">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row text-muted">
+            <div class="col-6 text-left">
+                <p class="mb-0">
+                    <a href="" class="text-muted"><strong>Blood Tracker</strong></a> &copy;
+                </p>
+            </div>
+            <div class="col-6 text-right">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#">Support</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#">Help Center</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#">Privacy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#">Terms</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

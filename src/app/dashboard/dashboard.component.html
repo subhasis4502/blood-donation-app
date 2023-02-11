@@ -1,0 +1,86 @@
+<!-- <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/> -->
+<div class="container">
+    <div class="panel panel-danger" style="background-color: aqua;">
+        <div class="panel-heading">Search Blood Stock</div>
+        <div class="panel-body row" style="display:flexbox; font-size: large; vertical-align: top; justify-content: space-between; padding: 20px;
+        line-height: 28px;">
+            <div class="container" title="Please select the country that the customer will primarily be served from" style="width: 100%; display: flex;">
+                <label style="margin-left: 18% ; font-weight: bold;">State</label>
+                <select placeholder="Phantasyland" (change)="changeState($any($event.target).value)" style="margin-right: 20%; margin-left: 20px;">
+                <option *ngFor="let count of state_arr">{{ count }}</option>
+                </select>
+
+                <label style="font-weight: bold;">City</label>
+
+                <select placeholder="Anycity" (change)="assignCity($any($event.target).value)" style="margin-left: 20px; ">
+                <option *ngFor="let city of cities">{{ city }}</option>
+                </select>
+            </div>
+
+        </div>
+        <div>
+            <button type="submit" style="margin-left: 200px; width: 65%; height: 50px;" value="Submit" (click)="submit()">Search</button><br /><br />
+        </div>
+
+
+    </div>
+
+
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Blood Bank Name</th>
+                <th>Address</th>
+                <th>Category</th>
+                <th>AB_neg</th>
+                <th>AB_pos</th>
+                <th>A_neg</th>
+                <th>A_pos</th>
+                <th>B_neg</th>
+                <th>B_pos</th>
+                <th>O_neg</th>
+                <th>O_neg</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="posts">
+            <tr *ngFor="let post of posts; index as i" (click)="showChart(post)" >
+                <td>{{i+1}}</td>
+                <td>{{post.Name}}</td>
+                <td>
+                    {{post.Address}}<br />{{post.Email}}
+                    <br />{{post.phoneNumber}}
+                </td>
+                <td>{{post.Category}}</td>
+                <td>{{post.BloodCount_ABneg}}</td>
+                <td>{{post.BloodCount_ABpos}}</td>
+                <td>{{post.BloodCount_Apos}}</td>
+                <td>{{post.BloodCount_Aneg}}</td>
+                <td>{{post.BloodCount_Bpos}}</td>
+                <td>{{post.BloodCount_Bneg}}</td>
+                <td>{{post.BloodCount_Opos}}</td>
+                <td>{{post.BloodCount_Oneg}}</td>
+                
+            </tr>
+        </tbody>
+        
+        
+    </table>
+
+    <div style="display: block" *ngIf="chart">
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+</div>
