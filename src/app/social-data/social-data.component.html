@@ -1,0 +1,21 @@
+<div id="social-data">
+  <h2>Social Media Data</h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Patient Name</th>
+      <th>Location</th>
+      <th>Blood Type</th>
+      <th>Blood Requirement</th>
+      <th>Patient Type</th>
+      <th>Date of Post</th>
+      <th>Emergency</th>
+      <th>Phone Number</th>
+      <th>Source</th>
+      <th>Message Sent</th>
+    </tr>
+    <tr *ngFor="let row of rows; index as i">
+      <td *ngFor="let col of row; index as j">{{ col }}</td>
+    </tr>
+  </table>
+</div>
