@@ -12,7 +12,7 @@ const donarSchema = mongoose.Schema({
         type: String,
         maxlength: 50,
     },
-    email: {
+    Email: {
         type: String,
         maxlength: 50,
     },
@@ -32,7 +32,7 @@ const donarSchema = mongoose.Schema({
         type: Number,
         length: 6,
     },
-    password: {
+    Password: {
         type: String,
         minLength: 5,
     },

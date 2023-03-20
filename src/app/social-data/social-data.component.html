@@ -14,8 +14,19 @@
       <th>Source</th>
       <th>Message Sent</th>
     </tr>
-    <tr *ngFor="let row of rows; index as i">
-      <td *ngFor="let col of row; index as j">{{ col }}</td>
+    <tr *ngFor="let row of socialData">
+      <td>{{ row.Name }}</td>
+      <td>{{ row.Patient_Name }}</td>
+      <td>{{ row.Location }}</td>
+      <td>{{ row.Blood_Type }}</td>
+      <td>{{ row.Blood_Requirement }}</td>
+      <td>{{ row.Patient_Type }}</td>
+      <td>{{ row.Date_of_Post }}</td>
+      <td>{{ row.Emergency }}</td>
+      <td>{{ row.Phone_Number }}</td>
+      <td>{{ row.Source }}</td>
+      <td>{{ row.Message_Sent }}</td>
+      <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)">Send Message</button>
     </tr>
   </table>
 </div>

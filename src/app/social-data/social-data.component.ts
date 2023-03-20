@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-social-data',
@@ -9,22 +10,22 @@ import { Component } from '@angular/core';
 export class SocialDataComponent {
   rows = [
     ['Md rockibul hossain', " ", 'Chattogram Medical College Hospital', 'A+', '450ml', 'Receiver', '4/1/2022', 'Yes', '01880-943489', "Facebook", "No"],
-    ["Mary mutua", "Aghakan Mombasa hospital", "O-", "500ml", "Receiver", "22/5/2019", "Yes", "7996824980", "Facebook", "No"],
-    ["Govind bisht", "Lucknow", "A-", "200ml", "Receiver", "5/1/2023", "Yes", "8738990986", "Facebook", "No"],
-    ["Mohamad Ridwan", "Apollo", "O-", "800ml", "Receiver", "21/02/2017", "No", "8286574816", "Facebook", "No"],
-    ["Mehndi hassan", "National Heart Foundation Hospital", "A+", "900ml", "Receiver", "02/10/2022", "No", "9156659090", "Facebook", "No"],
-    ["Nazrin Fazal", "Regional Cancer Center", "B+", "2000ml", "Receiver", "05/01/2023", "Yes", "9360187261", "Facebook", "No"],
-    ["Rohan Shah", "BLK Super Speciality Hospital New Delhi", "O+", "500ml", "Receiver", "12/10/2022", "Yes", "9012345678", "Facebook", "No"],
-    ["Aryan Patel", "Amrita Institute of Medical Sciences Kochi", "AB-", "1000ml", "Receiver", "25/08/2022", "No", "9456789012", "Facebook", "No"],
-    ["Kavya Sharma", "TOOR HOSPITAL", "B+", "350ml", "Receiver", "14/07/2022", "No", "8345678901", "Facebook", "No"],
-    ["Dhruv Gupta", "Apollo Hospitals", "O-", "200ml", "Receiver", "01/01/2022", "Yes", "7845678901", "Facebook", "No"],
-    ["Manisha Kumari", "Yashoda Hospitals", "A-", "400ml", "Receiver", "18/05/2022", "No", "7823456789", "Facebook", "No"],
-    ["Sumit Singh", "Tagore Heart Care & Research Centre", "AB+", "750ml", "Receiver", "22/09/2022", "No", "8934567890", "Facebook", "No"],
-    ["Rajesh Kumar", "Apollo Hospitals Patna", "B-", "250ml", "Receiver", "31/03/2022", "No", "7557586697", "Facebook", "No"],
-    ["Shweta Patil", "AESHRAT NURSING HOME", "A+", "600ml", "Receiver", "10/11/2022", "No", "8135897642", "Facebook", "No"],
-    ["Avni Mehta", "Government Medical College - Kozhikode", "O+", "300ml", "Receiver", "20/06/2022", "No", "7326397690", "Facebook", "No"],
-    ["Harsh Gupta", "Medanta - The Medicity Gurugram", "AB-", "800ml", "Receiver", "29/02/2022", "No", "8681487231", "Facebook", "No"],
-    ["Jay Patel", "Government Medical College - Malappuram", "B+", "550ml", "Receiver", "08/12/2022", "Yes", "7897456789", "Facebook", "No"],
+    ["Mary mutua", " ", "Aghakan Mombasa hospital", "O-", "500ml", "Receiver", "22/5/2019", "Yes", "7996824980", "Facebook", "No"],
+    ["Govind bisht", " ", "Lucknow", "A-", "200ml", "Receiver", "5/1/2023", "Yes", "8738990986", "Facebook", "No"],
+    ["Mohamad Ridwan", " ", "Apollo", "O-", "800ml", "Receiver", "21/02/2017", "No", "8286574816", "Facebook", "No"],
+    ["Mehndi hassan", " ", "National Heart Foundation Hospital", "A+", "900ml", "Receiver", "02/10/2022", "No", "9156659090", "Facebook", "No"],
+    ["Nazrin Fazal", " ", "Regional Cancer Center", "B+", "2000ml", "Receiver", "05/01/2023", "Yes", "9360187261", "Facebook", "No"],
+    ["Rohan Shah", " ", "BLK Super Speciality Hospital New Delhi", "O+", "500ml", "Receiver", "12/10/2022", "Yes", "9012345678", "Facebook", "No"],
+    ["Aryan Patel", " ", "Amrita Institute of Medical Sciences Kochi", "AB-", "1000ml", "Receiver", "25/08/2022", "No", "9456789012", "Facebook", "No"],
+    ["Kavya Sharma", " ", "TOOR HOSPITAL", "B+", "350ml", "Receiver", "14/07/2022", "No", "8345678901", "Facebook", "No"],
+    ["Dhruv Gupta", " ", "Apollo Hospitals", "O-", "200ml", "Receiver", "01/01/2022", "Yes", "7845678901", "Facebook", "No"],
+    ["Manisha Kumari", " ", "Yashoda Hospitals", "A-", "400ml", "Receiver", "18/05/2022", "No", "7823456789", "Facebook", "No"],
+    ["Sumit Singh", " ", "Tagore Heart Care & Research Centre", "AB+", "750ml", "Receiver", "22/09/2022", "No", "8934567890", "Facebook", "No"],
+    ["Rajesh Kumar", " ", "Apollo Hospitals Patna", "B-", "250ml", "Receiver", "31/03/2022", "No", "7557586697", "Facebook", "No"],
+    ["Shweta Patil", " ", "AESHRAT NURSING HOME", "A+", "600ml", "Receiver", "10/11/2022", "No", "8135897642", "Facebook", "No"],
+    ["Avni Mehta", " ", "Government Medical College - Kozhikode", "O+", "300ml", "Receiver", "20/06/2022", "No", "7326397690", "Facebook", "No"],
+    ["Harsh Gupta", " ", "Medanta - The Medicity Gurugram", "AB-", "800ml", "Receiver", "29/02/2022", "No", "8681487231", "Facebook", "No"],
+    ["Jay Patel", " ", "Government Medical College - Malappuram", "B+", "550ml", "Receiver", "08/12/2022", "Yes", "7897456789", "Facebook", "No"],
     ["Mukesh Kumar", "Apollo Hospitals Kozhikode", "O-", "700ml", "Receiver", "05/04/2022", "No", "7923456789", "Facebook", "No"],
     ["Smita Patel", "St. John's Medical College and Hospital", "A-", "1000ml", "Receiver", "15/02/2022", "No", "6324000548", "Facebook", "No"],
     ["Suresh Yadav", "Chettinad Health City", "AB+", "850ml", "Receiver", "03/08/2022", "No", "7724830690", "Facebook", "No"],
@@ -329,4 +330,73 @@ export class SocialDataComponent {
     ["Hari Gupta", "Care Hospitals", "O+", "350ml", "Receiver", "20/03/2020", "No", "7899012345", "Facebook", "No"],
     ["Anjali Sharma", "Bindubasini Nursing Home", "B+", "250ml", "Receiver", "30/05/2021", "No", "8462665381", "Facebook", "No"]
   ]
+
+  socialData: any;
+  data: any;
+  bloodBanks: any;
+
+
+  async sendMessage(request: any) {
+    console.log('Sending message...');
+    // Getting the address of the request
+    await axios.post('/api/socialdata/getAddress', {
+      hospitalName: request.Location,
+    }).then((response) => {
+      this.data = response.data;
+    });
+
+    //Preparing blood type
+    let bloodGroup = request.Blood_Type;
+    let bloodType = bloodGroup.substring(0, bloodGroup.length - 1) + '_' + (bloodGroup.charAt(bloodGroup.length - 1) === '+' ? 'pos' : 'neg');
+
+    // Checking the available blood
+    let param = {
+      "city": this.data.city,
+      "state": this.data.state,
+      "type": bloodType,
+      "quantity": request.Blood_Requirement.substring(0, request.Blood_Requirement.length - 2),
+    };
+    await axios.post('/api/bloodbanks/getAvailBlood', param).then((result) => {
+      console.log(result.data);
+      console.log(param);
+      this.bloodBanks = result.data;
+    })
+    // console.log(data);
+    // Sending message and update the database
+    if (this.bloodBanks.length > 0) {
+      // Preparing the message
+      let message = `Nearest Blood availablity locations against your request as of ${new Date().toString().substring(0, new Date().toString().indexOf('GMT'))}:\n`
+      for (const bloodBank of this.bloodBanks) {
+        const id = bloodBank["S.No."];
+        const name = bloodBank["Blood Bank Name"];
+        const address = bloodBank["Address"];
+        message += `${id}. Blood Bank Name: ${name}, Address: ${address}\n`;
+      }
+      console.log(message);
+      // Updating database
+      axios.put('/api/socialdata/setMessage', { id: request.id });
+      console.log('Message sent successfully');
+      axios.get('/api/socialdata/')
+        .then(response => {
+          this.socialData = response.data;
+          console.log(response.data.name);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
+    axios.get('/api/socialdata/')
+      .then(response => {
+        this.socialData = response.data;
+        console.log(response.data.name);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }
