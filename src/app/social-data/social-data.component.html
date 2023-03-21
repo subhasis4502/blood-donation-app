@@ -22,13 +22,11 @@
       <td>{{ row.Blood_Requirement }}</td>
       <td>{{ row.Patient_Type }}</td>
       <td>{{ row.Date_of_Post }}</td>
-      <td>{{ row.Emergency }}</td>
+      <td>{{ row.Emergency  === 1 ? 'Yes' : 'No' }}</td>
       <td>{{ row.Phone_Number }}</td>
       <td>{{ row.Source }}</td>
       <td>{{ row.Message_Sent }}</td>
-      <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)">
-        Send Message
-      </button>
+      <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)">Send Message</button>
     </tr>
   </table>
   <br />

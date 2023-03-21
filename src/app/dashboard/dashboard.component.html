@@ -1,9 +1,3 @@
-<!-- <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous"
-/> -->
 <div class="container">
   <div class="panel panel-danger">
     <div class="panel-heading">Search Blood Stock</div>
@@ -23,60 +17,42 @@
         title="Please select the country that the customer will primarily be served from"
         style="width: 100%; display: flex"
       >
-        <label class="state">State</label>
-        <!-- <select
-          id="changeState"
+        <label style="margin-left: 18%; font-weight: bold">State</label>
+        <select
           placeholder="Phantasyland"
           (change)="changeState($any($event.target).value)"
           style="margin-right: 20%; margin-left: 20px"
         >
           <option *ngFor="let count of state_arr">{{ count }}</option>
-        </select> -->
-        <div class="col-sm-3">
-          <select
-            class="form-select"
-            id="specificSizeSelect"
-            (change)="changeState($any($event.target).value)"
-          >
-            <option *ngFor="let count of state_arr">{{ count }}</option>
-          </select>
-        </div>
+        </select>
 
-        <label class="city">City</label>
+        <label style="font-weight: bold">City</label>
 
-        <div class="col-sm-3">
-          <select
-            class="form-select"
-            id="specificSizeSelect"
-            placeholder="Anycity"
-            (change)="assignCity($any($event.target).value)"
-          >
-            <option *ngFor="let city of cities">{{ city }}</option>
-          </select>
-        </div>
-        <div>
-          <button
-            type="submit"
-            class="button"
-            value="Submit"
-            (click)="submit()"
-          >
-            Search
-          </button>
-        </div>
+        <select
+          placeholder="Anycity"
+          (change)="assignCity($any($event.target).value)"
+          style="margin-left: 20px"
+        >
+          <option *ngFor="let city of cities">{{ city }}</option>
+        </select>
       </div>
     </div>
-    <!-- <div>
-      <button type="submit" class="button" value="Submit" (click)="submit()">
+    <div>
+      <button
+        type="submit"
+        style="margin-left: 200px; width: 65%; height: 50px"
+        value="Submit"
+        (click)="submit()"
+      >
         Search</button
       ><br /><br />
-    </div> -->
+    </div>
   </div>
 
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Sl.No.</th>
+        <th>S.No.</th>
         <th>Blood Bank Name</th>
         <th>Address</th>
         <th>Category</th>
@@ -107,10 +83,9 @@
         <td>{{ post.BloodCount_Opos }}</td>
         <td>{{ post.BloodCount_Oneg }}</td>
       </tr>
-    </tbody>
-  </table>
+    </table>
 
-  <div style="display: block" *ngIf="chart">
+    <!-- <div style="display: block" *ngIf="chart">
     <canvas
       baseChart
       [datasets]="barChartData"
@@ -120,5 +95,6 @@
       [chartType]="barChartType"
     >
     </canvas>
+  </div> -->
   </div>
 </div>

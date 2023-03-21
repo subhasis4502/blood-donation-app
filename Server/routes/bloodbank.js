@@ -15,9 +15,12 @@ router.post("/getBloodbanks", (req, res) => {
   let sortBy = req.body.sortBy ? req.body.sortBy : `S.No.`;
   let limit = req.body.limit ? parseInt(req.body.limit) : 100;
   // let skip = parseInt(req.body.skip);
-  let term = req.body.searchTerm || '';
+  // let term = req.body.searchTerm || '';
+  let city = req.body.city;
+  let state = req.body.state;
 
-  const query = "select * from blood_stock where `Blood Bank Name` like '%" + term + "%' order by `" + sortBy + "` " + order + " limit " + limit;
+  // const query = "select * from blood_stock where `Blood Bank Name` like '%" + term + "%' order by `" + sortBy + "` " + order + " limit " + limit;
+  const query = `select * from blood_stock where City = '${city}' && State = '${state}' order by '${sortBy}' ${order} limit ${limit}`;
 
   // if (term) {
   //   BloodBank.find({ $text: { $search: term } })
@@ -45,17 +48,36 @@ router.post("/getBloodbanks", (req, res) => {
   // }
 
   db.query(query, (err, result) => {
-    if(err) res.status(404).send(err);
+    if (err) res.status(404).send(err);
     res.status(200).send(result);
   });
 });
 
-// Give the blood banks on a perticular state with available blood type
-router.post("/getAvailBlood", (req, res) => {
-  const query = `select * from blood_stock where ${req.body.type} >= '${req.body.quantity}' && (City='${req.body.city}' || State='${req.body.state}')`;
+// Give the blood banks on a perticular state with complete available blood type
+router.post("/getCompleteAvailBlood", (req, res) => {
+  let quantity = req.body.quantity;
+  let query;
+  if (quantity === "") {
+    // If the quantitiy is not mentioned
+    query = `select * from blood_stock where ${req.body.type} != '0' && (City='${req.body.city}' || State='${req.body.state}')`;
+  } else {
+    // Quantity Mentioned
+    query = `select * from blood_stock where ${req.body.type} >= '${quantity}' && (City='${req.body.city}' || State='${req.body.state}')`;
+  }
 
   db.query(query, (err, result) => {
-    if(err) res.status(404).send(err);
+    if (err) res.status(404).send(err);
+    // If blood banks with needed quanity found
+    res.status(200).send(result);
+  });
+});
+
+// Give the blood banks on a perticular state with partial available blood type
+router.post("/getPartialAvailBlood", (req, res) => {
+  const query = `select * from blood_stock where ${req.body.type} != '0' && (City='${req.body.city}' || State='${req.body.state}')`;
+
+  db.query(query, (err, result) => {
+    if (err) res.status(404).send(err);
     res.status(200).send(result);
   });
 });
