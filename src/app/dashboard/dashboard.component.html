@@ -23,76 +23,66 @@
         title="Please select the country that the customer will primarily be served from"
         style="width: 100%; display: flex"
       >
-        <label style="margin-left: 18%; font-weight: bold">State</label>
-        <select
-          placeholder="Phantasyland"
-          (change)="changeState($any($event.target).value)"
-          style="margin-right: 20%; margin-left: 20px"
+      <label for="state-select">Select a state:</label>
+      <select id="state-select" #stateSelect (change)="onStateSelect(stateSelect.value)">
+        <option *ngFor="let state of statesArr" [value]="state.state">{{state.state}}</option>
+      </select>
+  
+      <label for="city-select">Select a city:</label>
+      <select id="city-select" #citySelect (change)="onCitySelect(citySelect.value)">
+        <option *ngFor="let city of citiesArr" [value]="city">{{city}}</option>
+      </select>
+      </div>
+      <div>
+        <button
+          type="submit"
+          style="margin-left: 200px; width: 65%; height: 50px"
+          value="Submit"
+          (click)="submit()"
         >
-          <option *ngFor="let count of state_arr">{{ count }}</option>
-        </select>
-
-        <label style="font-weight: bold">City</label>
-
-        <select
-          placeholder="Anycity"
-          (change)="assignCity($any($event.target).value)"
-          style="margin-left: 20px"
-        >
-          <option *ngFor="let city of cities">{{ city }}</option>
-        </select>
+          Search</button
+        ><br /><br />
       </div>
     </div>
-    <div>
-      <button
-        type="submit"
-        style="margin-left: 200px; width: 65%; height: 50px"
-        value="Submit"
-        (click)="submit()"
-      >
-        Search</button
-      ><br /><br />
-    </div>
-  </div>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>S.No.</th>
-        <th>Blood Bank Name</th>
-        <th>Address</th>
-        <th>Category</th>
-        <th>AB_neg</th>
-        <th>AB_pos</th>
-        <th>A_neg</th>
-        <th>A_pos</th>
-        <th>B_neg</th>
-        <th>B_pos</th>
-        <th>O_neg</th>
-        <th>O_neg</th>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th>Blood Bank Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Category</th>
+          <th>AB_neg</th>
+          <th>AB_pos</th>
+          <th>A_neg</th>
+          <th>A_pos</th>
+          <th>B_neg</th>
+          <th>B_pos</th>
+          <th>O_neg</th>
+          <th>O_neg</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let bloodBank of bloodBanks">
+        <td>{{ bloodBank["S.No."] }}</td>
+        <td>{{ bloodBank["Blood Bank Name"] }}</td>
+        <td>{{ bloodBank["Address"] }}</td>
+        <td>{{ bloodBank["City"] }}</td>
+        <td>{{ bloodBank["State"] }}</td>
+        <td>{{ bloodBank["Category"] }}</td>
+        <td>{{ bloodBank["AB_neg"] }}</td>
+        <td>{{ bloodBank["AB_pos"] }}</td>
+        <td>{{ bloodBank["A_neg"] }}</td>
+        <td>{{ bloodBank["A_pos"] }}</td>
+        <td>{{ bloodBank["B_neg"] }}</td>
+        <td>{{ bloodBank["B_pos"] }}</td>
+        <td>{{ bloodBank["O_neg"] }}</td>
+        <td>{{ bloodBank["O_pos"] }}</td>
       </tr>
-    </thead>
-    <tbody *ngIf="posts">
-      <tr *ngFor="let post of posts; index as i" (click)="showChart(post)">
-        <td>{{ i + 1 }}</td>
-        <td>{{ post.Name }}</td>
-        <td>
-          {{ post.Address }}<br />{{ post.Email }} <br />{{ post.phoneNumber }}
-        </td>
-        <td>{{ post.Category }}</td>
-        <td>{{ post.BloodCount_ABneg }}</td>
-        <td>{{ post.BloodCount_ABpos }}</td>
-        <td>{{ post.BloodCount_Apos }}</td>
-        <td>{{ post.BloodCount_Aneg }}</td>
-        <td>{{ post.BloodCount_Bpos }}</td>
-        <td>{{ post.BloodCount_Bneg }}</td>
-        <td>{{ post.BloodCount_Opos }}</td>
-        <td>{{ post.BloodCount_Oneg }}</td>
-      </tr>
-    </tbody>
-  </table>
+    </table>
 
-  <div style="display: block" *ngIf="chart">
+    <!-- <div style="display: block" *ngIf="chart">
     <canvas
       baseChart
       [datasets]="barChartData"
@@ -102,5 +92,6 @@
       [chartType]="barChartType"
     >
     </canvas>
+  </div> -->
   </div>
 </div>
