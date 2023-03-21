@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.controls['password'].value,
     }
     console.log(variables);
-    axios.post('http://localhost:8080/api/donars/login',variables)
+    axios.post('/api/donars/login',variables)
     .then((response:AxiosResponse)=>{
       if (response.data.loginSuccess) {
         
