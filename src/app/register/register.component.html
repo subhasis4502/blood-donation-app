@@ -1,132 +1,243 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<main class="content">
-  <div class="container-fluid p-0">
-    <h1 class="h3 mb-3">Welcome To Blood Tracker</h1>
+<form (submit)="onRegister($event)" class="border p-3 rounded-3">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-dark">
+      <span class="fs-3">SIGN UP</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="firstname" class="form-label"> Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter your full name"
+        id="firstname"
+        [(ngModel)]="donor.name"
+        name="something"
+      />
+    </div>
+
+    <div class="form-group col mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        [(ngModel)]="donor.email"
+        name="something"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <label for="mobile" class="form-label">Mobile Number</label>
+      <input
+        type="tel"
+        class="form-control"
+        id="mobile"
+        placeholder="Enter Mobile Number"
+        [(ngModel)]="donor.phone_number"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="pincode" class="form-label">Pin Code</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Enter Pin Code"
+        id="ptname"
+        [(ngModel)]="donor.pin_code"
+        name="something"
+      />
+    </div>
+  </div>
+  <!-- 
     <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Register Now</h5>
-          </div>
-          <div class="card-body">
-            <form [formGroup]="registerForm">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="name">Name</label>
-                  <input
-                    formControlName="name"
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    required
-                  />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="email">Email</label>
-                  <input
-                    formControlName="email"
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="password">Password</label>
-                  <input
-                    formControlName="password"
-                    type="password"
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="cpassword">Confirm Password</label>
-                  <input
-                    formControlName="cpass"
-                    type="password"
-                    class="form-control"
-                    id="cpassword"
-                    name="cpassword"
-                    placeholder="Confirm Password"
-                    required
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="custom-control custom-checkbox m-0">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    required
-                  />
-                  <p class="custom-control-label">
-                    I agree to the Terms and Conditions and Privacy Policy
-                  </p>
-                </label>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                (click)="register()"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+      <div class="col mb-3">
+        <div class="m-1">Gender</div>
+        <div class="form-check form-check-inline">
+          <input type="radio" name="gender" value="m" [(ngModel)]="donor.ge/>
+          Male
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" name="gender" value="f" />
+          Female
         </div>
       </div>
-      <p>Have an account? <a href="/login">Login</a></p>
+    </div> -->
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="blood" class="form-label">Blood Group</label>
+      <select
+        class="custom-select"
+        name="blood"
+        id="blood"
+        [(ngModel)]="donor.blood_group"
+      >
+        <option value="O+">O+</option>
+        <option value="A+">A+</option>
+        <option value="B+">B+</option>
+        <option value="AB+">AB+</option>
+
+        <option value="A-">A-</option>
+        <option value="B-">B-</option>
+        <option value="AB-">AB-</option>
+      </select>
+    </div>
+
+    <div class="col mb-3">
+      <label for="address" class="form-label"> Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Enter full address"
+        [(ngModel)]="donor.address"
+        name="something"
+      />
     </div>
   </div>
-</main>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+  <div class="row">
+    <div class="col mb-3">
+      <label for="State" class="form-label">State</label>
+      <select
+        class="custom-select"
+        id="state"
+        name="state"
+        #stateSelect
+        (change)="onStateSelect(stateSelect.value)"
+        [(ngModel)]="donor.state"
+      >
+        <option *ngFor="let state of statesArr" [value]="state.state">
+          {{ state.state }}
+        </option>
+      </select>
+      <br /><br />
+    </div>
 
-<footer class="footer">
-  <div class="container-fluid">
-    <div class="row text-muted">
-      <div class="col-6 text-left">
-        <p class="mb-0">
-          <a href="" class="text-muted"><strong>Blood Tracker</strong></a>
-          &copy;
-        </p>
+    <div class="col mb-3">
+      <label for="District" class="form-label">District</label>
+      <select
+        class="custom-select"
+        id="cdist"
+        name="dist"
+        #citySelect
+        (change)="onCitySelect(citySelect.value)"
+        [(ngModel)]="donor.district"
+      >
+        <option *ngFor="let city of citiesArr" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="qunty" class="form-label">Height</label>
+      <div class="input-group mb-2 mr-sm-2">
+        <input
+          type="number"
+          class="form-control"
+          id="inlineFormInputGroupdonorname2"
+          placeholder=" Enter height_cms"
+          [(ngModel)]="donor.height_cms"
+          name="something"
+        />
+        <div class="input-group-prepend">
+          <div class="input-group-text">cm</div>
+        </div>
       </div>
-      <div class="col-6 text-right">
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a class="text-muted" href="#">Support</a>
-          </li>
-          <li class="list-inline-item">
-            <a class="text-muted" href="#">Help Center</a>
-          </li>
-          <li class="list-inline-item">
-            <a class="text-muted" href="#">Privacy</a>
-          </li>
-          <li class="list-inline-item">
-            <a class="text-muted" href="#">Terms</a>
-          </li>
-        </ul>
+    </div>
+
+    <div class="col mb-3">
+      <label for="qunty" class="form-label">Wight</label>
+      <div class="input-group mb-2 mr-sm-2">
+        <input
+          type="number"
+          class="form-control"
+          id="inlineFormInputGroupdonorname2"
+          placeholder="Enter weight_kgs"
+          [(ngModel)]="donor.weight_kgs"
+          name="something"
+        />
+        <div class="input-group-prepend">
+          <div class="input-group-text">kg</div>
+        </div>
       </div>
     </div>
   </div>
-</footer>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="age" class="form-label">Age</label>
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        placeholder="Enter Your Age"
+        [(ngModel)]="donor.age"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="pincode" class="form-label">Medical History</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Any Special Medical Condition"
+        id="medical_exam"
+        [(ngModel)]="donor.medical_exam"
+        name="something"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Enter Password"
+        [(ngModel)]="donor.password"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="C_password" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Confirm password"
+        id="C_password"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <div class="col-6 offset-3">
+        <div class="d-grid">
+          <button type="reset" class="submit">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
