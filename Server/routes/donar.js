@@ -215,7 +215,7 @@ router.post("/bloodRequest", (req, res) => {
   // });
 });
 
-router.get("/getBloodcamps", (req, res) => {
+router.post("/getBloodcamps", (req, res) => {
   // let order = req.body.order ? req.body.order : "desc";
   // let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
   // let limit = req.body.limit ? parseInt(req.body.limit) : 100;
@@ -240,7 +240,7 @@ router.get("/getBloodcamps", (req, res) => {
   //       .json({ success: true, products, postSize: products.length });
   //   });
   // }
-  const query = `select * from donor_camp`;
+  const query = `select * from donor_camp where District='${req.body.city}' && State='${req.body.state}'`;
   db.query(query, (err, result) => {
     if (err) res.status(404).send(err);
     res.status(200).send(result);
