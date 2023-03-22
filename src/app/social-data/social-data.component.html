@@ -26,9 +26,7 @@
       <td>{{ row.Phone_Number }}</td>
       <td>{{ row.Source }}</td>
       <td>{{ row.Message_Sent }}</td>
-      <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)">Send Message</button>
+      <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)" class="button">Send Message</button>
     </tr>
   </table>
-  <br />
-  <button type="button" class="button">Send Message</button>
 </div>

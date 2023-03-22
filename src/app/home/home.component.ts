@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  showPopup = false;
   statesArr = [
     {
       state: "Andhra Pradesh",
@@ -889,10 +888,6 @@ export class HomeComponent implements OnInit {
   cities: any;
   selectedState: any;
   selectedCity: any;
-
-  openPopup() {
-    this.showPopup = true;
-  }
 
   citiesArr: string[] = [];
 

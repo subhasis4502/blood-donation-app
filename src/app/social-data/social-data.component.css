@@ -23,7 +23,6 @@ th {
 
 /* Send Button design */
 .button {
-  position: absolute;
   background-color: #20201f;
   color: #f7f2f2;
   font-size: medium;

@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { AxiosResponse } from 'axios';
+import { Component } from '@angular/core';
 import axios from 'axios';
 
 @Component({
-  selector: 'app-blood-camps',
-  templateUrl: './blood-camps.component.html',
-  styleUrls: ['./blood-camps.component.css']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.css']
 })
-export class BloodCampsComponent implements OnInit {
-  camps: any;
+export class RegisterFormComponent {
   statesArr = [
     {
       state: "Andhra Pradesh",
@@ -891,28 +889,21 @@ export class BloodCampsComponent implements OnInit {
   cities: any;
   selectedState: any;
   selectedCity: any;
-  constructor() {
+
+  user = {
+    name: "",
+    patientName: "",
+    address: "",
+    city: "",
+    state: "",
+    bloodType: "",
+    bloodQuantity: "",
+    emergency: "",
+    phoneNumber: "",
+    email: "",
   }
-  
+
   citiesArr: string[] = [];
-
-
-  // submit() {
-  //   console.log('called');
-
-  //   axios.post('http://localhost:8080/api/donars/getBloodcamps')
-  //     .then((response: AxiosResponse) => {
-  //       if (response.data.success) {
-  //         this.posts = response.data.products;
-  //         console.log(this.posts);
-  //       } else {
-  //         console.log(response.data)
-  //         alert("Failed to get the data");
-  //       }
-
-  //     })
-
-  // }
 
   onStateSelect(stateName: string) {
     this.selectedState = stateName;
@@ -928,19 +919,26 @@ export class BloodCampsComponent implements OnInit {
     this.selectedCity = cityName;
   }
 
-  async submit() {
-    await axios.post('/api/donars/getBloodcamps', {
-      city: this.selectedCity,
-      state: this.selectedState
-    })
-    .then((response) => {
-      this.camps = response.data;
-    });
-
-    // this.chart = false;
+  submit(e: any) {
+    e.preventDefault();
+    console.log(this.user);
+    axios.post("/api/socialdata/addRequest", this.user)
+      .then(() => {
+        alert("Your Request Submitted successfully");
+        this.user = {
+          name: "",
+          patientName: "",
+          address: "",
+          city: "",
+          state: "",
+          bloodType: "",
+          bloodQuantity: "",
+          emergency: "",
+          phoneNumber: "",
+          email: "",
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
   }
-
-  ngOnInit() {
-  }
-
 }
