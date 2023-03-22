@@ -1,140 +1,241 @@
-<form>
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="donor.name" />
+<form (submit)="onRegister($event)" class="border p-3 rounded-3">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 bg-dark">
+      <span class="fs-3">SIGN UP</span>
+    </div>
   </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="donor.email" />
-  </div>
-  <div class="col mb-3">
-    <label for="State" class="form-label">State</label>
-    <select
-      class="custom-select"
-      id="state"
-      name="state"
-      #stateSelect
-      (change)="onStateSelect(stateSelect.value)"
-      [(ngModel)]="donor.state"
-    >
-      <option *ngFor="let state of statesArr" [value]="state.state">
-        {{ state.state }}
-      </option>
-    </select>
-    <br /><br />
-  </div>
-  <div class="col mb-3">
-    <label for="District" class="form-label">District</label>
-    <select
-      class="custom-select"
-      id="cdist"
-      name="dist"
-      #citySelect
-      (change)="onCitySelect(citySelect.value)"
-      [(ngModel)]="donor.district"
-    >
-      <option *ngFor="let city of citiesArr" [value]="city">
-        {{ city }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <label for="phone_number">Phone Number:</label>
-    <input
-      type="tel"
-      id="phone_number"
-      name="phone_number"
-      [(ngModel)]="donor.phone_number"
-    />
-  </div>
-  <div>
-    <label for="pin_code">PIN Code:</label>
-    <input
-      type="number"
-      id="pin_code"
-      name="pin_code"
-      [(ngModel)]="donor.pin_code"
-    />
-  </div>
-  <div>
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      id="password"
-      name="password"
-      [(ngModel)]="donor.password"
-    />
-  </div>
-  <div>
-    <label for="address">Address:</label>
-    <input
-      type="text"
-      id="address"
-      name="address"
-      [(ngModel)]="donor.address"
-    />
-  </div>
-  <div>
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" [(ngModel)]="donor.age" />
-  </div>
-  <div>
-    <label for="height_cms">Height (cms):</label>
-    <input
-      type="number"
-      id="height_cms"
-      name="height_cms"
-      [(ngModel)]="donor.height_cms"
-    />
-  </div>
-  <div>
-    <label for="weight_kgs">Weight (kgs):</label>
-    <input
-      type="number"
-      id="weight_kgs"
-      name="weight_kgs"
-      [(ngModel)]="donor.weight_kgs"
-    />
-  </div>
-  <div>
-    <label for="medical_con">Any Medical Condition:</label>
-    <input
-      type="text"
-      id="medical_con"
-      name="medical_con"
-      [(ngModel)]="donor.medical_exam"
-    />
-  </div>
-  <div class="col mb-3">
-    <label for="blood" class="form-label">Blood Group</label>
-    <select
-      class="custom-select"
-      name="blood"
-      id="blood"
-      [(ngModel)]="donor.blood_group"
-    >
-      <option value="O+">O+</option>
-      <option value="A+">A+</option>
-      <option value="B+">B+</option>
-      <option value="AB+">AB+</option>
-      <option value="A-">A-</option>
-      <option value="B-">B-</option>
-      <option value="AB-">AB-</option>
-    </select>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="firstname" class="form-label"> Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter your full name"
+        id="firstname"
+        [(ngModel)]="donor.name"
+        name="something"
+      />
+    </div>
+
+    <div class="form-group col mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        [(ngModel)]="donor.email"
+        name="something"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
   </div>
   <div class="row">
     <div class="col mb-3">
-      <div class="col-6 offset-3">
-        <div class="d-grid">
-          <button type="reset" class="submit">Submit</button>
+      <label for="mobile" class="form-label">Mobile Number</label>
+      <input
+        type="tel"
+        class="form-control"
+        id="mobile"
+        placeholder="Enter Mobile Number"
+        [(ngModel)]="donor.phone_number"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="pincode" class="form-label">Pin Code</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Enter Pin Code"
+        id="ptname"
+        [(ngModel)]="donor.pin_code"
+        name="something"
+      />
+    </div>
+  </div>
+  <!-- 
+    <div class="row">
+      <div class="col mb-3">
+        <div class="m-1">Gender</div>
+        <div class="form-check form-check-inline">
+          <input type="radio" name="gender" value="m" [(ngModel)]="donor.ge/>
+          Male
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" name="gender" value="f" />
+          Female
+        </div>
+      </div>
+    </div> -->
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="blood" class="form-label">Blood Group</label>
+      <select
+        class="custom-select"
+        name="blood"
+        id="blood"
+        [(ngModel)]="donor.blood_group"
+      >
+        <option value="O+">O+</option>
+        <option value="A+">A+</option>
+        <option value="B+">B+</option>
+        <option value="AB+">AB+</option>
+
+        <option value="A-">A-</option>
+        <option value="B-">B-</option>
+        <option value="AB-">AB-</option>
+      </select>
+    </div>
+
+    <div class="col mb-3">
+      <label for="address" class="form-label"> Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="Enter full address"
+        [(ngModel)]="donor.address"
+        name="something"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="State" class="form-label">State</label>
+      <select
+        class="custom-select"
+        id="state"
+        name="state"
+        #stateSelect
+        (change)="onStateSelect(stateSelect.value)"
+        [(ngModel)]="donor.state"
+      >
+        <option *ngFor="let state of statesArr" [value]="state.state">
+          {{ state.state }}
+        </option>
+      </select>
+      <br /><br />
+    </div>
+
+    <div class="col mb-3">
+      <label for="District" class="form-label">District</label>
+      <select
+        class="custom-select"
+        id="cdist"
+        name="dist"
+        #citySelect
+        (change)="onCitySelect(citySelect.value)"
+        [(ngModel)]="donor.district"
+      >
+        <option *ngFor="let city of citiesArr" [value]="city">
+          {{ city }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="qunty" class="form-label">Height</label>
+      <div class="input-group mb-2 mr-sm-2">
+        <input
+          type="number"
+          class="form-control"
+          id="inlineFormInputGroupdonorname2"
+          placeholder=" Enter height_cms"
+          [(ngModel)]="donor.height_cms"
+          name="something"
+        />
+        <div class="input-group-prepend">
+          <div class="input-group-text">cm</div>
         </div>
       </div>
     </div>
 
     <div class="col mb-3">
+      <label for="qunty" class="form-label">Wight</label>
+      <div class="input-group mb-2 mr-sm-2">
+        <input
+          type="number"
+          class="form-control"
+          id="inlineFormInputGroupdonorname2"
+          placeholder="Enter weight_kgs"
+          [(ngModel)]="donor.weight_kgs"
+          name="something"
+        />
+        <div class="input-group-prepend">
+          <div class="input-group-text">kg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="age" class="form-label">Age</label>
+      <input
+        type="number"
+        class="form-control"
+        id="age"
+        placeholder="Enter Your Age"
+        [(ngModel)]="donor.age"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="pincode" class="form-label">Medical History</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Any Special Medical Condition"
+        id="medical_exam"
+        [(ngModel)]="donor.medical_exam"
+        name="something"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Enter Password"
+        [(ngModel)]="donor.password"
+        name="something"
+      />
+      <div class="form-text"></div>
+    </div>
+
+    <div class="col mb-3">
+      <label for="C_password" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Confirm password"
+        id="C_password"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3">
       <div class="col-6 offset-3">
         <div class="d-grid">
-          <button type="reset" class="reset">Reset</button>
+          <button type="reset" class="submit">Sign Up</button>
         </div>
       </div>
     </div>

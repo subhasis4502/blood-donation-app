@@ -1,0 +1,16 @@
+.submit {
+  width: 170px;
+  height: 60px;
+  margin-left: 38%;
+  border: none;
+  outline: none;
+  background: #5057eb;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 40px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(8, 6, 148, 0.731);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
