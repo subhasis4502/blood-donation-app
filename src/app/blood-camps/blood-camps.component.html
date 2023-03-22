@@ -39,21 +39,23 @@
                 <th>S.No.</th>
                 <th>Blood Camp Name</th>
                 <th>Camp Address</th>
+                <th>Contact Number</th>
                 <th>State</th>
                 <th>Dstrict</th>
                 <th>DateOfCamp</th>
             </tr>
         </thead>
-        <tbody *ngIf="posts">
-            <tr *ngFor="let post of posts; index as i">
-                <td>{{i+1}}</td>
-                <td>{{post.NameOfCamp}}</td>
+        <tbody>
+            <tr *ngFor="let camp of camps; index as i">
+                <td>{{camp.id}}</td>
+                <td>{{camp.NameOfCamp}}</td>
                 <td>
-                    {{post.CampHeldAt}}
+                    {{camp.Address}}
                 </td>
-                <td>{{post.State}}</td>
-                <td>{{post.District}}</td>
-                <td>{{post.DateOfCamp.split("T")[0]}}</td>
+                <td>{{camp.ContactNumber}}</td>
+                <td>{{camp.State}}</td>
+                <td>{{camp.District}}</td>
+                <td>{{camp.DateOfCamp}}</td>
             </tr>
 
         </tbody>

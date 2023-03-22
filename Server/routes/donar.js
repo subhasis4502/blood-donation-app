@@ -215,31 +215,36 @@ router.post("/bloodRequest", (req, res) => {
   // });
 });
 
-router.post("/getBloodcamps", (req, res) => {
-  let order = req.body.order ? req.body.order : "desc";
-  let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-  let limit = req.body.limit ? parseInt(req.body.limit) : 100;
-  let term = req.body.searchTerm;
-  console.log(term);
-  if (term) {
-    DonarCamp.find({ $text: { $search: term } })
-      .populate("writer")
-      .sort([[sortBy, order]])
-      .limit(limit)
-      .exec((err, products) => {
-        if (err) return res.status(400).json({ success: false, err });
-        res
-          .status(200)
-          .json({ success: true, products, postSize: products.length });
-      });
-  } else {
-    DonarCamp.find({}).exec((err, products) => {
-      if (err) return res.status(400).json({ success: false, err });
-      res
-        .status(200)
-        .json({ success: true, products, postSize: products.length });
-    });
-  }
+router.get("/getBloodcamps", (req, res) => {
+  // let order = req.body.order ? req.body.order : "desc";
+  // let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+  // let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+  // let term = req.body.searchTerm;
+  // console.log(term);
+  // if (term) {
+  //   DonarCamp.find({ $text: { $search: term } })
+  //     .populate("writer")
+  //     .sort([[sortBy, order]])
+  //     .limit(limit)
+  //     .exec((err, products) => {
+  //       if (err) return res.status(400).json({ success: false, err });
+  //       res
+  //         .status(200)
+  //         .json({ success: true, products, postSize: products.length });
+  //     });
+  // } else {
+  //   DonarCamp.find({}).exec((err, products) => {
+  //     if (err) return res.status(400).json({ success: false, err });
+  //     res
+  //       .status(200)
+  //       .json({ success: true, products, postSize: products.length });
+  //   });
+  // }
+  const query = `select * from donor_camp`;
+  db.query(query, (err, result) => {
+    if (err) res.status(404).send(err);
+    res.status(200).send(result);
+  });
 });
 
 module.exports = router;
