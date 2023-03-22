@@ -14,6 +14,32 @@ export class RegisterComponent implements OnInit {
 
   statesArr = [
     {
+      state: "West Bengal",
+      districts: [
+        "Alipurduar",
+        "Bankura",
+        "Birbhum",
+        "Burdwan (Bardhaman)",
+        "Cooch Behar",
+        "Dakshin Dinajpur (South Dinajpur)",
+        "Darjeeling",
+        "Hooghly",
+        "Howrah",
+        "Jalpaiguri",
+        "Kalimpong",
+        "Kolkata",
+        "Malda",
+        "Murshidabad",
+        "Nadia",
+        "North 24 Parganas",
+        "Paschim Medinipur (West Medinipur)",
+        "Purba Medinipur (East Medinipur)",
+        "Purulia",
+        "South 24 Parganas",
+        "Uttar Dinajpur (North Dinajpur)",
+      ],
+    },
+    {
       state: "Andhra Pradesh",
       districts: [
         "Anantapur",
@@ -863,33 +889,7 @@ export class RegisterComponent implements OnInit {
         "Unnao",
         "Varanasi",
       ],
-    },
-    {
-      state: "West Bengal",
-      districts: [
-        "Alipurduar",
-        "Bankura",
-        "Birbhum",
-        "Burdwan (Bardhaman)",
-        "Cooch Behar",
-        "Dakshin Dinajpur (South Dinajpur)",
-        "Darjeeling",
-        "Hooghly",
-        "Howrah",
-        "Jalpaiguri",
-        "Kalimpong",
-        "Kolkata",
-        "Malda",
-        "Murshidabad",
-        "Nadia",
-        "North 24 Parganas",
-        "Paschim Medinipur (West Medinipur)",
-        "Purba Medinipur (East Medinipur)",
-        "Purulia",
-        "South 24 Parganas",
-        "Uttar Dinajpur (North Dinajpur)",
-      ],
-    },
+    }
   ];
   cities: any;
   selectedState: any;
@@ -911,7 +911,7 @@ export class RegisterComponent implements OnInit {
     blood_group: ""
   }
 
-  citiesArr: string[] = [];
+  citiesArr: string[] = this.statesArr[0].districts;
 
   onStateSelect(stateName: string) {
     this.selectedState = stateName;
@@ -929,9 +929,10 @@ export class RegisterComponent implements OnInit {
 
   onRegister(e: any) {
     e.preventDefault();
-    axios.post("/api/socialdata/addRequest", this.donor)
+    console.log(this.donor);
+    axios.post("/api/donars/register", this.donor)
       .then(() => {
-        alert("Your Request Submitted successfully");
+        alert("Your are registered");
         this.donor = {
           name: "",
           email: "",
@@ -956,6 +957,8 @@ export class RegisterComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit(): void {
+    this.selectedState = this.statesArr[0].state;
+    this.selectedCity = this.statesArr[0].districts[0];
   }
 
 }

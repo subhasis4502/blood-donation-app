@@ -1,13 +1,16 @@
-.popup {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.logo img {
+  height: 6rem;
+}
+
+.logo h4 {
+  color: white;
+  font-size: 3rem;
 }
 
 form {
