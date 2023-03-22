@@ -18,6 +18,7 @@ import { BloodRequestComponent } from './blood-request/blood-request.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FileUploadModule } from 'ng2-file-upload';
 import { SocialDataComponent } from './social-data/social-data.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SocialDataComponent } from './social-data/social-data.component';
     CampRegistrationComponent,
     BloodRequestComponent,
     SocialDataComponent,
+    RegisterFormComponent,
 
   ],
   imports: [
@@ -44,6 +46,7 @@ import { SocialDataComponent } from './social-data/social-data.component';
       { path: 'camps', component: BloodCampsComponent },
       { path: 'campRegistration', component: CampRegistrationComponent },
       { path: 'bloodRequest', component: BloodRequestComponent },
+      { path: 'registerForm', component: RegisterFormComponent },
 
     ]),
     BrowserAnimationsModule,
