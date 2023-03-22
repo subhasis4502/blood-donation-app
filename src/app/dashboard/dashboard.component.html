@@ -57,43 +57,6 @@
       </div>
     </div>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>S.No.</th>
-          <th>Blood Bank Name</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Category</th>
-          <th>AB_neg</th>
-          <th>AB_pos</th>
-          <th>A_neg</th>
-          <th>A_pos</th>
-          <th>B_neg</th>
-          <th>B_pos</th>
-          <th>O_neg</th>
-          <th>O_neg</th>
-        </tr>
-      </thead>
-      <tr *ngFor="let bloodBank of bloodBanks">
-        <td>{{ bloodBank["S.No."] }}</td>
-        <td>{{ bloodBank["Blood Bank Name"] }}</td>
-        <td>{{ bloodBank["Address"] }}</td>
-        <td>{{ bloodBank["City"] }}</td>
-        <td>{{ bloodBank["State"] }}</td>
-        <td>{{ bloodBank["Category"] }}</td>
-        <td>{{ bloodBank["AB_neg"] }}</td>
-        <td>{{ bloodBank["AB_pos"] }}</td>
-        <td>{{ bloodBank["A_neg"] }}</td>
-        <td>{{ bloodBank["A_pos"] }}</td>
-        <td>{{ bloodBank["B_neg"] }}</td>
-        <td>{{ bloodBank["B_pos"] }}</td>
-        <td>{{ bloodBank["O_neg"] }}</td>
-        <td>{{ bloodBank["O_pos"] }}</td>
-      </tr>
-    </table>
-
     <!-- <div style="display: block" *ngIf="chart">
     <canvas
       baseChart
@@ -106,4 +69,40 @@
     </canvas>
   </div> -->
   </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Sl.No.</th>
+        <th>Blood Bank Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Category</th>
+        <th>AB_neg</th>
+        <th>AB_pos</th>
+        <th>A_neg</th>
+        <th>A_pos</th>
+        <th>B_neg</th>
+        <th>B_pos</th>
+        <th>O_neg</th>
+        <th>O_neg</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let bloodBank of bloodBanks">
+      <td>{{ bloodBank["S.No."] }}</td>
+      <td>{{ bloodBank["Blood Bank Name"] }}</td>
+      <td>{{ bloodBank["Address"] }}</td>
+      <td>{{ bloodBank["City"] }}</td>
+      <td>{{ bloodBank["State"] }}</td>
+      <td>{{ bloodBank["Category"] }}</td>
+      <td>{{ bloodBank["AB_neg"] }}</td>
+      <td>{{ bloodBank["AB_pos"] }}</td>
+      <td>{{ bloodBank["A_neg"] }}</td>
+      <td>{{ bloodBank["A_pos"] }}</td>
+      <td>{{ bloodBank["B_neg"] }}</td>
+      <td>{{ bloodBank["B_pos"] }}</td>
+      <td>{{ bloodBank["O_neg"] }}</td>
+      <td>{{ bloodBank["O_pos"] }}</td>
+    </tr>
+  </table>
 </div>

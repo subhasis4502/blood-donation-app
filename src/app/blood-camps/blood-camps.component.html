@@ -56,32 +56,31 @@
         </div>
       </div>
     </div>
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>S.No.</th>
-          <th>Blood Camp Name</th>
-          <th>Camp Address</th>
-          <th>Contact Number</th>
-          <th>State</th>
-          <th>Dstrict</th>
-          <th>DateOfCamp</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let camp of camps; index as i">
-          <td>{{ camp.id }}</td>
-          <td>{{ camp.NameOfCamp }}</td>
-          <td>
-            {{ camp.Address }}
-          </td>
-          <td>{{ camp.ContactNumber }}</td>
-          <td>{{ camp.State }}</td>
-          <td>{{ camp.District }}</td>
-          <td>{{ camp.DateOfCamp }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Sl.No.</th>
+        <th>Blood Camp Name</th>
+        <th>Camp Address</th>
+        <th>Contact Number</th>
+        <th>State</th>
+        <th>Dstrict</th>
+        <th>DateOfCamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let camp of camps; index as i">
+        <td>{{ camp.id }}</td>
+        <td>{{ camp.NameOfCamp }}</td>
+        <td>
+          {{ camp.Address }}
+        </td>
+        <td>{{ camp.ContactNumber }}</td>
+        <td>{{ camp.State }}</td>
+        <td>{{ camp.District }}</td>
+        <td>{{ camp.DateOfCamp }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

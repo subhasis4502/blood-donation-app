@@ -13,6 +13,32 @@ export class DashboardComponent implements OnInit {
   bloodBanks: any;
   statesArr = [
     {
+      state: "West Bengal",
+      districts: [
+        "Alipurduar",
+        "Bankura",
+        "Birbhum",
+        "Burdwan (Bardhaman)",
+        "Cooch Behar",
+        "Dakshin Dinajpur (South Dinajpur)",
+        "Darjeeling",
+        "Hooghly",
+        "Howrah",
+        "Jalpaiguri",
+        "Kalimpong",
+        "Kolkata",
+        "Malda",
+        "Murshidabad",
+        "Nadia",
+        "North 24 Parganas",
+        "Paschim Medinipur (West Medinipur)",
+        "Purba Medinipur (East Medinipur)",
+        "Purulia",
+        "South 24 Parganas",
+        "Uttar Dinajpur (North Dinajpur)",
+      ],
+    },
+    {
       state: "Andhra Pradesh",
       districts: [
         "Anantapur",
@@ -862,33 +888,7 @@ export class DashboardComponent implements OnInit {
         "Unnao",
         "Varanasi",
       ],
-    },
-    {
-      state: "West Bengal",
-      districts: [
-        "Alipurduar",
-        "Bankura",
-        "Birbhum",
-        "Burdwan (Bardhaman)",
-        "Cooch Behar",
-        "Dakshin Dinajpur (South Dinajpur)",
-        "Darjeeling",
-        "Hooghly",
-        "Howrah",
-        "Jalpaiguri",
-        "Kalimpong",
-        "Kolkata",
-        "Malda",
-        "Murshidabad",
-        "Nadia",
-        "North 24 Parganas",
-        "Paschim Medinipur (West Medinipur)",
-        "Purba Medinipur (East Medinipur)",
-        "Purulia",
-        "South 24 Parganas",
-        "Uttar Dinajpur (North Dinajpur)",
-      ],
-    },
+    }
   ];
   cities: any;
   selectedState: any;
@@ -990,7 +990,7 @@ export class DashboardComponent implements OnInit {
   // loadData() {
   //   const states = document.getElementById("states");
   //   const districts = document.getElementById("districts");
-  
+
   //   let statesHtml = `<option disabled selected value=""> -- select a state -- </option>`;
   //   let districtsHtml = `<option disabled selected value=""> -- select a district -- </option>`;
   //   statesArr.forEach((state, index) => {
@@ -1003,13 +1003,13 @@ export class DashboardComponent implements OnInit {
   //     });
   //     districts.innerHTML = districtsHtml;
   //   });
-  
+
   //   districts.addEventListener("change", () => {
   //     document.getElementById("btn").disabled = false;
   //   });
   // }
-  
-  citiesArr: string[] = [];
+
+  citiesArr: string[] = this.statesArr[0].districts;
 
   onStateSelect(stateName: string) {
     this.selectedState = stateName;
@@ -1026,15 +1026,14 @@ export class DashboardComponent implements OnInit {
   }
 
   async submit() {
-    console.log('called');
     await axios.post('/api/bloodbanks/getBloodbanks', {
       city: this.selectedCity,
       state: this.selectedState
     })
-    .then((response) => {
-      this.bloodBanks = response.data;
-      console.log(this.bloodBanks);
-    });
+      .then((response) => {
+        this.bloodBanks = response.data;
+        console.log(this.bloodBanks);
+      });
 
     // this.chart = false;
   }
@@ -1042,7 +1041,8 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.loadData();
+    this.selectedState = this.statesArr[0].state;
+    this.selectedCity = this.statesArr[0].districts[0];
   }
 
 }

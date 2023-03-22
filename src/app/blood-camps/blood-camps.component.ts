@@ -11,6 +11,32 @@ export class BloodCampsComponent implements OnInit {
   camps: any;
   statesArr = [
     {
+      state: "West Bengal",
+      districts: [
+        "Alipurduar",
+        "Bankura",
+        "Birbhum",
+        "Burdwan (Bardhaman)",
+        "Cooch Behar",
+        "Dakshin Dinajpur (South Dinajpur)",
+        "Darjeeling",
+        "Hooghly",
+        "Howrah",
+        "Jalpaiguri",
+        "Kalimpong",
+        "Kolkata",
+        "Malda",
+        "Murshidabad",
+        "Nadia",
+        "North 24 Parganas",
+        "Paschim Medinipur (West Medinipur)",
+        "Purba Medinipur (East Medinipur)",
+        "Purulia",
+        "South 24 Parganas",
+        "Uttar Dinajpur (North Dinajpur)",
+      ],
+    },
+    {
       state: "Andhra Pradesh",
       districts: [
         "Anantapur",
@@ -860,33 +886,7 @@ export class BloodCampsComponent implements OnInit {
         "Unnao",
         "Varanasi",
       ],
-    },
-    {
-      state: "West Bengal",
-      districts: [
-        "Alipurduar",
-        "Bankura",
-        "Birbhum",
-        "Burdwan (Bardhaman)",
-        "Cooch Behar",
-        "Dakshin Dinajpur (South Dinajpur)",
-        "Darjeeling",
-        "Hooghly",
-        "Howrah",
-        "Jalpaiguri",
-        "Kalimpong",
-        "Kolkata",
-        "Malda",
-        "Murshidabad",
-        "Nadia",
-        "North 24 Parganas",
-        "Paschim Medinipur (West Medinipur)",
-        "Purba Medinipur (East Medinipur)",
-        "Purulia",
-        "South 24 Parganas",
-        "Uttar Dinajpur (North Dinajpur)",
-      ],
-    },
+    }
   ];
   cities: any;
   selectedState: any;
@@ -894,7 +894,7 @@ export class BloodCampsComponent implements OnInit {
   constructor() {
   }
   
-  citiesArr: string[] = [];
+  citiesArr: string[] = this.statesArr[0].districts;
 
 
   // submit() {
@@ -941,6 +941,8 @@ export class BloodCampsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedState = this.statesArr[0].state;
+    this.selectedCity = this.statesArr[0].districts[0];
   }
 
 }
