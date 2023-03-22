@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-register-form',
@@ -889,6 +890,19 @@ export class RegisterFormComponent {
   selectedState: any;
   selectedCity: any;
 
+  user = {
+    name: "",
+    patientName: "",
+    address: "",
+    city: "",
+    state: "",
+    bloodType: "",
+    bloodQuantity: "",
+    emergency: "",
+    phoneNumber: "",
+    email: "",
+  }
+
   citiesArr: string[] = [];
 
   onStateSelect(stateName: string) {
@@ -903,5 +917,28 @@ export class RegisterFormComponent {
 
   onCitySelect(cityName: string) {
     this.selectedCity = cityName;
+  }
+
+  submit(e: any) {
+    e.preventDefault();
+    console.log(this.user);
+    axios.post("/api/socialdata/addRequest", this.user)
+      .then(() => {
+        alert("Your Request Submitted successfully");
+        this.user = {
+          name: "",
+          patientName: "",
+          address: "",
+          city: "",
+          state: "",
+          bloodType: "",
+          bloodQuantity: "",
+          emergency: "",
+          phoneNumber: "",
+          email: "",
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
   }
 }
