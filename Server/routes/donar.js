@@ -76,14 +76,14 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   // console.log(donar._id);
-  const query = `select * from donors where Email="${req.body.email}"`;
+  const query = `select * from donors where email="${req.body.email}"`;
   db.query(query, (err, result) => {
     if (result.length === 0)
       res.status(200).json({
         loginSuccess: false,
         message: "Auth failed, email not found",
       });
-    else if (req.body.password === result[0].Password)
+    else if (req.body.password === result[0].password)
       res.status(200).json({
         loginSuccess: true,
         person: result[0],

@@ -921,7 +921,7 @@ export class RegisterFormComponent {
 
   submit(e: any) {
     e.preventDefault();
-    // console.log(this.user);
+    console.log(this.user);
     axios.post("/api/socialdata/addRequest", this.user)
       .then(() => {
         alert("Your Request Submitted successfully");

@@ -25,7 +25,7 @@
       <td>{{ row.Emergency  === 1 ? 'Yes' : 'No' }}</td>
       <td>{{ row.Phone_Number }}</td>
       <td>{{ row.Source }}</td>
-      <td>{{ row.Message_Sent }}</td>
+      <td>{{ row.Message_Sent === 1 ? 'Yes' : 'No'  }}</td>
       <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)" class="button">Send Message</button>
     </tr>
   </table>
