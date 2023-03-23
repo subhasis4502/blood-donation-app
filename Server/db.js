@@ -5,7 +5,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "blood_donation_app",
+  database: "project_blood_app",
   port: 3307,
 });
 
