@@ -37,17 +37,10 @@ router.post("/register", (req, res) => {
     weight_kgs,
     medical_exam,
     blood_group,
-    rh_factor,
-    blood_pressure,
-    blood_unit_number,
-    bag_segment_number,
-    aadhaar_number,
-    donar_credit_card_number,
-    date_of_donation,
   } = req.body;
 
   const query =
-    "INSERT INTO donors (Name, Email, State, District, Phone_number, PinCode, Password, Address, Age, Height_cms, Weight_kgs, MedicalExam, BloodGroup, RhFactor, BloodPressure, BloodUnitNumber, BagSegmentNumber, AadhaarNumber, DonarCreditCardNumber, DateOfDonation) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    "INSERT INTO donors (Name, Email, State, District, Phone_number, pin_Code, Password, Address, Age, Height_cms, Weight_kgs, Medical_exam, Blood_Group) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
   const values = [
     name,
     email,
@@ -62,13 +55,6 @@ router.post("/register", (req, res) => {
     weight_kgs,
     medical_exam,
     blood_group,
-    rh_factor,
-    blood_pressure,
-    blood_unit_number,
-    bag_segment_number,
-    aadhaar_number,
-    donar_credit_card_number,
-    date_of_donation,
   ];
 
   db.query(query, values, (err, result) => {
@@ -175,9 +161,6 @@ router.post("/getBloodbanks", (req, res) => {
 });
 
 router.post("/donarRegistration", (req, res) => {
-
-
-
   console.log("Reached");
   const donarRegistration = new DonarRegistration(req.body);
   console.log(donarRegistration);
@@ -191,8 +174,20 @@ router.post("/donarRegistration", (req, res) => {
 });
 
 router.post("/bloodRequest", (req, res) => {
-  const { Name, Email, Gender, Age, State, District, PhoneNumber, ReasonForBloodRequirement, Address, Hospital, Recommendation } = req.body;
-  
+  const {
+    Name,
+    Email,
+    Gender,
+    Age,
+    State,
+    District,
+    PhoneNumber,
+    ReasonForBloodRequirement,
+    Address,
+    Hospital,
+    Recommendation,
+  } = req.body;
+
   // create SQL query to insert data into 'blood_request' table
   const query = `INSERT INTO blood_request (name, email, gender, age, state, district, phone_number, reason_for_blood_requirement, address, hospital, recommendation) VALUES ('${Name}', '${Email}', '${Gender}', ${Age}, '${State}', '${District}', '${PhoneNumber}', '${ReasonForBloodRequirement}', '${Address}', '${Hospital}', '${Recommendation}')`;
 
