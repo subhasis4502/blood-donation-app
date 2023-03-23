@@ -14,9 +14,7 @@ router.get("/", (req, res) => {
 router.post("/getAddress", (req, res) => {
   const apiKey = "35ece6a0754249019ffd6cce0407c130";
 
-  const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
-    req.body.hospitalName
-  )}&key=${apiKey}&language=en&pretty=1`;
+  const apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${req.body.hospitalName}&key=${apiKey}&language=en&pretty=1`;
 
   axios
     .get(apiUrl)

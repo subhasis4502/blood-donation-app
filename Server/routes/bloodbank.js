@@ -59,10 +59,16 @@ router.post("/getCompleteAvailBlood", (req, res) => {
   let query;
   if (quantity === "") {
     // If the quantitiy is not mentioned
-    query = `select * from blood_stock where ${req.body.type} != '0' && (City='${req.body.city}' || State='${req.body.state}')`;
+    query = `SELECT *, ROUND(( 3959 * acos( cos( radians(${req.body.lattitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${req.body.longitude}) ) + sin( radians(${req.body.lattitude}) ) * sin( radians( latitude ) ) ) ), 2) AS distance
+    FROM blood_stock 
+    where ${req.body.type} >= '0' && (City='${req.body.city}' || State='${req.body.state}')
+    ORDER BY distance ASC;`
   } else {
     // Quantity Mentioned
-    query = `select * from blood_stock where ${req.body.type} >= '${quantity}' && (City='${req.body.city}' || State='${req.body.state}')`;
+    query = `SELECT *, ROUND(( 3959 * acos( cos( radians(${req.body.lattitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${req.body.longitude}) ) + sin( radians(${req.body.lattitude}) ) * sin( radians( latitude ) ) ) ), 2) AS distance
+    FROM blood_stock  
+    where ${req.body.type} >= '${quantity}' && (City='${req.body.city}' || State='${req.body.state}')
+    ORDER BY distance ASC;`;
   }
 
   db.query(query, (err, result) => {
@@ -74,7 +80,9 @@ router.post("/getCompleteAvailBlood", (req, res) => {
 
 // Give the blood banks on a perticular state with partial available blood type
 router.post("/getPartialAvailBlood", (req, res) => {
-  const query = `select * from blood_stock where ${req.body.type} != '0' && (City='${req.body.city}' || State='${req.body.state}')`;
+  const query = `SELECT *, ROUND(( 3959 * acos( cos( radians(${req.body.lattitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${req.body.longitude}) ) + sin( radians(${req.body.lattitude}) ) * sin( radians( latitude ) ) ) ), 2) AS distance
+  FROM blood_stock 
+  where ${req.body.type} != '0' && (City='${req.body.city}' || State='${req.body.state}')`;
 
   db.query(query, (err, result) => {
     if (err) res.status(404).send(err);

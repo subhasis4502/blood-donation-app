@@ -26,6 +26,7 @@ export class SocialDataComponent {
     //Preparing blood type
     let bloodGroup = request.Blood_Type;
     let bloodType = bloodGroup.substring(0, bloodGroup.length - 1) + '_' + (bloodGroup.charAt(bloodGroup.length - 1) === '+' ? 'pos' : 'neg');
+    // console.log(bloodType);
 
     // Checking the available blood
     // 1. For complete availablity
@@ -34,6 +35,8 @@ export class SocialDataComponent {
       "state": this.data.state,
       "type": bloodType,
       "quantity": request.Blood_Requirement.substring(0, request.Blood_Requirement.length - 2),
+      "lattitude": this.data.lattitude,
+      "longitude": this.data.longitude,
     }).then((result) => {
       // console.log(result.data);
       this.bloodBanks = result.data;
@@ -45,11 +48,13 @@ export class SocialDataComponent {
         "city": this.data.city,
         "state": this.data.state,
         "type": bloodType,
+        "lattitude": this.data.lattitude,
+        "longitude": this.data.longitude,
       }).then((result) => {
         this.bloodBanks = result.data;
       })
     }
-
+    // console.log(this.bloodBanks);
     // Sending message and update the database
     let message;
     // Preparing the message
@@ -61,7 +66,8 @@ export class SocialDataComponent {
         const name = bloodBank["Blood Bank Name"];
         const address = bloodBank["Address"];
         const availQnty = bloodBank[bloodType];
-        message += `${id}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml\n`;
+        const distance = bloodBank["distance"];
+        message += `${id}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
       }
     }
     // Blood not found
