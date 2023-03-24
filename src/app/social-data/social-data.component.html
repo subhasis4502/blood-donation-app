@@ -11,6 +11,7 @@
       <th>Date of Post</th>
       <th>Emergency</th>
       <th>Phone Number</th>
+      <th>Email Id</th>
       <th>Source</th>
       <th>Message Sent</th>
     </tr>
@@ -24,6 +25,7 @@
       <td>{{ row.Date_of_Post }}</td>
       <td>{{ row.Emergency  === 1 ? 'Yes' : 'No' }}</td>
       <td>{{ row.Phone_Number }}</td>
+      <td>{{ row.Email_Id === null ? "Not Available" : row.Email_Id }}</td>
       <td>{{ row.Source }}</td>
       <td>{{ row.Message_Sent === 1 ? 'Yes' : 'No'  }}</td>
       <button *ngIf="row.Message_Sent === 0" (click)="sendMessage(row)" class="button">Send Message</button>

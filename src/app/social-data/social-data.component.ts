@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
+import * as emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-social-data',
@@ -61,13 +62,15 @@ export class SocialDataComponent {
     // Blood found
     if (this.bloodBanks.length > 0) {
       message = `Nearest Blood availablity locations against your request as of ${new Date().toString().substring(0, new Date().toString().indexOf('GMT'))}:\n`
+      let i = 1;
       for (const bloodBank of this.bloodBanks) {
         const id = bloodBank["S.No."];
         const name = bloodBank["Blood Bank Name"];
         const address = bloodBank["Address"];
         const availQnty = bloodBank[bloodType];
         const distance = bloodBank["distance"];
-        message += `${id}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
+        message += `${i}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
+        i++;
       }
     }
     // Blood not found
@@ -78,6 +81,20 @@ export class SocialDataComponent {
     // Updating database
     // axios.put('/api/socialdata/setMessage', { id: request.id });
     console.log('Message sent successfully');
+    // Sending email
+    emailjs.send("service_c1mokpy", "template_uzdb8ea", {
+      "to_email": request.email,
+      "message": message,
+      "to_name": request.Name,
+    }, "Q3pIrEvqOLa9Hj3h6")
+      .then((response: any) => {
+        console.log("SUCCESS", response);
+        alert("Email Sent");
+      }, (error: any) => {
+        console.log("FAILED", error);
+      });
+
+
     axios.get('/api/socialdata/')
       .then(response => {
         this.socialData = response.data;
@@ -87,6 +104,8 @@ export class SocialDataComponent {
       });
 
   }
+
+
 
   constructor() { }
 
