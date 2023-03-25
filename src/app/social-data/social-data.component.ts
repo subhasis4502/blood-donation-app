@@ -78,12 +78,13 @@ export class SocialDataComponent {
       message = `We're sorry, but no ${bloodGroup} blood is currently unavailable in your area.`;
     }
     console.log(message);
+    console.log(request);
     // Updating database
     // axios.put('/api/socialdata/setMessage', { id: request.id });
     console.log('Message sent successfully');
     // Sending email
-    emailjs.send("service_c1mokpy", "template_uzdb8ea", {
-      "to_email": request.email,
+    emailjs.send("service_r19lvsr", "template_o7iob17", {
+      "email_id": request.Email_Id,
       "message": message,
       "to_name": request.Name,
     }, "Q3pIrEvqOLa9Hj3h6")
