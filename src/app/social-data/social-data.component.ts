@@ -55,36 +55,75 @@ export class SocialDataComponent {
         this.bloodBanks = result.data;
       })
     }
-    // console.log(this.bloodBanks);
+    console.log(this.bloodBanks);
     // Sending message and update the database
-    let message;
+    let message = "";
+    let message_title;
     // Preparing the message
     // Blood found
     if (this.bloodBanks.length > 0) {
-      message = `Nearest Blood availablity locations against your request as of ${new Date().toString().substring(0, new Date().toString().indexOf('GMT'))}:\n`
+      message_title = `Nearest Blood availablity locations against your request as of ${new Date().toString().substring(0, new Date().toString().indexOf('GMT'))}: \n`;
       let i = 1;
       for (const bloodBank of this.bloodBanks) {
-        const id = bloodBank["S.No."];
-        const name = bloodBank["Blood Bank Name"];
-        const address = bloodBank["Address"];
-        const availQnty = bloodBank[bloodType];
-        const distance = bloodBank["distance"];
-        message += `${i}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
-        i++;
+        if (bloodBank["distance"] <= 5) {
+          if (i === 1) {
+            message += "🟢Within 5 Km:\n";
+          }
+          const id = bloodBank["S.No."];
+          const name = bloodBank["Blood Bank Name"];
+          const address = bloodBank["Address"];
+          const availQnty = bloodBank[bloodType];
+          const distance = bloodBank["distance"];
+          message += `${i}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
+          i++;
+        }
+      }
+      
+      i = 1;
+      for (const bloodBank of this.bloodBanks) {
+        if (bloodBank["distance"] > 5 && bloodBank["distance"] <= 10) {
+          if (i === 1) {
+            message += `\n🟠Within 10 Km:\n`;
+          }
+          const id = bloodBank["S.No."];
+          const name = bloodBank["Blood Bank Name"];
+          const address = bloodBank["Address"];
+          const availQnty = bloodBank[bloodType];
+          const distance = bloodBank["distance"];
+          message += `${i}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
+          i++;
+        }
+      }
+
+      i = 1;
+      for (const bloodBank of this.bloodBanks) {
+        if (bloodBank["distance"] > 10) {
+          if (i === 1) {
+            message += `\n🔴More than 10 Km:\n`;
+          }
+          const id = bloodBank["S.No."];
+          const name = bloodBank["Blood Bank Name"];
+          const address = bloodBank["Address"];
+          const availQnty = bloodBank[bloodType];
+          const distance = bloodBank["distance"];
+          message += `${i}. Blood Bank Name: ${name}, Address: ${address}, Available Quantity: ${availQnty}ml, Distance: ${distance} km\n`;
+          i++;
+        }
       }
     }
     // Blood not found
     else {
       message = `We're sorry, but no ${bloodGroup} blood is currently unavailable in your area.`;
     }
-    console.log(message);
-    console.log(request);
+    // console.log(message);
+    // console.log(request);
     // Updating database
     // axios.put('/api/socialdata/setMessage', { id: request.id });
     console.log('Message sent successfully');
     // Sending email
     emailjs.send("service_r19lvsr", "template_o7iob17", {
       "email_id": request.Email_Id,
+      "message_title": message_title,
       "message": message,
       "to_name": request.Name,
     }, "Q3pIrEvqOLa9Hj3h6")
