@@ -43,24 +43,6 @@ app.use(cookieParser());
 // Setup the mongoDB connection
 const MONGODB_URL = process.env.MONGODB_URL;
 
-// connect to mongodb
-// mongoose.connect(
-//     MONGODB_URL, {
-//       useUnifiedTopology: true,
-//     }).then(() => {
-//   // Start the App server
-//   // eslint-disable-next-line no-console
-//   console.log('Connected to mongoDB');
-//   // eslint-disable-next-line no-console
-//   app.listen(PORT, () => console.log('Listening to server on '+ PORT));
-// })
-//     .catch((err) => {
-//       // If not connected , exit the process
-//       // eslint-disable-next-line no-console
-//       console.log('Error while connecting to mongoDB', err);
-//       process.exit(1);
-//     });
-
 app.use("/api/donars/", donar);
 app.use("/api/bloodbanks/", bloodbank);
 app.use("/api/socialdata/", socialdata);
